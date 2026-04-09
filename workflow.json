@@ -1,0 +1,363 @@
+{
+  "name": "Métodos HTTP en API de Pacientes",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        -112
+      ],
+      "id": "09138c68-3cca-4420-96a5-25be9fe79c33",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api-medicina-automatizacion-ia-avanzada-production.up.railway.app/api/patients",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "63e31f03-3808-48c0-ba7a-6b753cd627d8",
+      "name": "HTTP Request",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1487077895502299180",
+          "mode": "list",
+          "cachedResultName": "N8N server",
+          "cachedResultUrl": "https://discord.com/channels/1487077895502299180"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1487077954969145416",
+          "mode": "list",
+          "cachedResultName": "notificaciones",
+          "cachedResultUrl": "https://discord.com/channels/1487077895502299180/1487077954969145416"
+        },
+        "content": "=Holaa, hay un problema con la creación de este usuario:\n\n {{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        416,
+        96
+      ],
+      "id": "fe87e8bf-faa1-480e-8b0d-20319718a33d",
+      "name": "Send a message",
+      "webhookId": "15ba5d12-e2c8-4262-93b4-d1d3c404feee",
+      "credentials": {
+        "discordOAuth2Api": {
+          "id": "PAHi0LgjHomfg9j4",
+          "name": "Discord account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        336
+      ],
+      "id": "2d4b6fac-234d-4b3a-a7a1-93606a4ac0d8",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "url": "https://api-medicina-automatizacion-ia-avanzada-production.up.railway.app/api/patients",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        448
+      ],
+      "id": "ee5bcdcb-a238-400d-91e4-e7f421443cfb",
+      "name": "HTTP Request1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1487077895502299180",
+          "mode": "list",
+          "cachedResultName": "N8N server",
+          "cachedResultUrl": "https://discord.com/channels/1487077895502299180"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1487077954969145416",
+          "mode": "list",
+          "cachedResultName": "notificaciones",
+          "cachedResultUrl": "https://discord.com/channels/1487077895502299180/1487077954969145416"
+        },
+        "content": "=Holaa, hay un problema con la creación de este usuario:\n\n {{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        416,
+        544
+      ],
+      "id": "1580d4c5-769b-4ab2-8609-ce4745a882ef",
+      "name": "Send a message1",
+      "webhookId": "15ba5d12-e2c8-4262-93b4-d1d3c404feee",
+      "credentials": {
+        "discordOAuth2Api": {
+          "id": "PAHi0LgjHomfg9j4",
+          "name": "Discord account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "created",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "006c792f-5e60-4259-9530-0ff462711e7d",
+      "name": "Crear usuario- created",
+      "webhookId": "8540c328-7ce8-4ee3-b315-da1f314a7706"
+    },
+    {
+      "parameters": {
+        "path": "consultar",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        448
+      ],
+      "id": "560c6a1b-d141-4d20-8d6c-98243756798f",
+      "name": "Consular",
+      "webhookId": "8540c328-7ce8-4ee3-b315-da1f314a7706"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        400,
+        880
+      ],
+      "id": "7d26f4ae-d4e4-4b7e-b1c2-4dc00962d16a",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://api-medicina-automatizacion-ia-avanzada-production.up.railway.app/api/patients/",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        192,
+        992
+      ],
+      "id": "250201ab-9997-4686-a8de-117434987032",
+      "name": "HTTP Request2",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1487077895502299180",
+          "mode": "list",
+          "cachedResultName": "N8N server",
+          "cachedResultUrl": "https://discord.com/channels/1487077895502299180"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1487077954969145416",
+          "mode": "list",
+          "cachedResultName": "notificaciones",
+          "cachedResultUrl": "https://discord.com/channels/1487077895502299180/1487077954969145416"
+        },
+        "content": "=Holaa, hay un problema con la creación de este usuario:\n\n {{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        400,
+        1088
+      ],
+      "id": "79bf1773-4084-4abd-b2af-8ec0ed3b25ba",
+      "name": "Send a message2",
+      "webhookId": "15ba5d12-e2c8-4262-93b4-d1d3c404feee",
+      "credentials": {
+        "discordOAuth2Api": {
+          "id": "PAHi0LgjHomfg9j4",
+          "name": "Discord account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "DELETE",
+        "path": "patient-deleted",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        992
+      ],
+      "id": "a97b7546-5557-4116-bf83-6f8e9137aa38",
+      "name": "Eliminar",
+      "webhookId": "8540c328-7ce8-4ee3-b315-da1f314a7706"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear usuario- created": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consular": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eliminar": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e2ff7294-7d5f-4758-a1b2-4b6c98c4f4eb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dd4091cf52d726cab7c24bca48eb75e8121947b5521f43e0818288e6432bfd5d"
+  },
+  "id": "mZzJWXppbOQRnBdg",
+  "tags": []
+}
